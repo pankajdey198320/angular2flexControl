@@ -1,0 +1,14 @@
+<ng-content></ng-content>
+<table>
+<thead>
+    <tr>
+            <td *ngFor="let item of gridColumnModels;">{{item.Title}}</td>
+
+    </tr>
+</thead>
+<tbody>
+        <tr *ngFor="let item of Data;">
+            <td *ngFor="let col of gridColumnModels;">{{item[col.Title]}}</td>
+        </tr>
+</tbody>
+</table>
