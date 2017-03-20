@@ -13,13 +13,14 @@ var platform_browser_1 = require('@angular/platform-browser');
 var app_component_1 = require('./app.component');
 var grid_component_1 = require('./Control/Grid/grid.component');
 var grid_column_1 = require('./Control/Grid/GridColumn/grid.column');
+var grid_row_1 = require('./Control/Grid/Row/grid.row');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule],
-            declarations: [app_component_1.AppComponent, grid_component_1.Grid, grid_column_1.GridColumn],
+            declarations: [app_component_1.AppComponent, grid_component_1.Grid, grid_column_1.GridColumn, grid_row_1.GridRow],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

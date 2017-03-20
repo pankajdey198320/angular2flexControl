@@ -1,4 +1,4 @@
-import { Component,ContentChildren,QueryList,AfterContentInit,Input ,TemplateRef} from '@angular/core';
+import { Component,ContentChildren,QueryList,AfterContentInit,Input ,TemplateRef,ViewContainerRef} from '@angular/core';
 import {GridColumn} from './GridColumn/grid.column';
 import {GridColumnModel} from './Model/grid-column.model';
 import {DataRowModel} from './Model/grid-data-row.model';
@@ -9,8 +9,8 @@ import {DataRowModel} from './Model/grid-data-row.model';
 export class Grid implements AfterContentInit{
   gridColumnModels:GridColumnModel[]=[];
   @Input() Data:DataRowModel[]=[];
-  @ContentChildren(TemplateRef) contentChildren: QueryList<GridColumn>;
-  constructor(){
+  @ContentChildren(TemplateRef) contentChildren: QueryList<any>;
+  constructor(private cr:ViewContainerRef){
       // this.Data.push({index:0,fileds:
       //   [{fieldName:'Name',filedValue:'Pankaj Dey' },
       //   {fieldName:'salary',filedValue:'3300' },
@@ -24,9 +24,10 @@ export class Grid implements AfterContentInit{
   ngAfterContentInit() {
     // contentChildren is set
      this.contentChildren.forEach((item,idx)=>{
-        this.gridColumnModels.push(new GridColumnModel(item.Title,item.Value));
+        this.gridColumnModels.push(new GridColumnModel(item.Title,item.Value,item));
+       //this.cr.createEmbeddedView(item,null,null);
      })
       
   }
-    }
+}
   

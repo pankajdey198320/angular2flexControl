@@ -11,7 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var grid_column_model_1 = require('./Model/grid-column.model');
 var Grid = (function () {
-    function Grid() {
+    function Grid(cr) {
+        this.cr = cr;
         this.gridColumnModels = [];
         this.Data = [];
         // this.Data.push({index:0,fileds:
@@ -28,7 +29,8 @@ var Grid = (function () {
         var _this = this;
         // contentChildren is set
         this.contentChildren.forEach(function (item, idx) {
-            _this.gridColumnModels.push(new grid_column_model_1.GridColumnModel(item.Title, item.Value));
+            _this.gridColumnModels.push(new grid_column_model_1.GridColumnModel(item.Title, item.Value, item));
+            //this.cr.createEmbeddedView(item,null,null);
         });
     };
     __decorate([
@@ -44,7 +46,7 @@ var Grid = (function () {
             selector: 'flex-grid',
             templateUrl: '/app/control/Grid/grid.template.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [core_1.ViewContainerRef])
     ], Grid);
     return Grid;
 }());

@@ -1,9 +1,10 @@
 "use strict";
 var GridColumnModel = (function () {
-    function GridColumnModel(Title, Value) {
+    function GridColumnModel(Title, Value, ref) {
         if (Value === void 0) { Value = 'DefaultValue'; }
         this.Title = Title;
         this.Value = Value;
+        this.ref = ref;
     }
     return GridColumnModel;
 }());

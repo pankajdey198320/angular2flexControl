@@ -10,18 +10,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var GridColumn = (function () {
-    function GridColumn() {
+    function GridColumn(cr, componentResolver) {
+        // this.componentResolver.resolveComponentFactory()
+        this.cr = cr;
+        this.componentResolver = componentResolver;
         this.Value = 'DefaultValue';
     }
+    GridColumn.prototype.ngOnInit = function () {
+        //  let x= this.cr.createEmbeddedView(this.ref,null,0);
+        //x.context = this.data;
+        //Need to create directive to apply  dynamic content.
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', String)
     ], GridColumn.prototype, "Title", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', core_1.TemplateRef)
+    ], GridColumn.prototype, "ref", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], GridColumn.prototype, "data", void 0);
     GridColumn = __decorate([
-        core_1.Directive({
-            selector: 'flex-grid-column'
+        core_1.Component({
+            selector: 'flex-grid-column',
+            template: "<td>\n     <template [ngTemplateOutlet]=\"ref\" [ngOutletContext]=\"data\"></template>\n\n    </td>\n    "
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [core_1.ViewContainerRef, core_1.ComponentFactoryResolver])
     ], GridColumn);
     return GridColumn;
 }());

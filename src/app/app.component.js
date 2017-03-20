@@ -20,7 +20,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "<h1>Hello {{name}}</h1>\n  <flex-grid [Data]=\"DataSrc\">\n    <flex-grid-column *TemplateRef  Title = 'name'><div>asdas</div></flex-grid-column>\n    <flex-grid-column *TemplateRef  Title = 'salary'>asdasd</flex-grid-column>\n  \n    <flex-grid-column *TemplateRef  Title = 'age'>asdasd</flex-grid-column>\n    <template></template>\n  </flex-grid>\n  ",
+            templateUrl: './app/app.html'
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

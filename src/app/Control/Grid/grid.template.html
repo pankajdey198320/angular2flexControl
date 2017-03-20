@@ -7,8 +7,25 @@
     </tr>
 </thead>
 <tbody>
-        <tr *ngFor="let item of Data;">
-            <td *ngFor="let col of gridColumnModels;">{{item[col.Title]}}</td>
-        </tr>
+        <template ngFor let-item [ngForOf]="Data">
+            <tr>
+                <template ngFor let-col [ngForOf]="gridColumnModels">
+                    <flex-grid-column [data]="DataRow" [ref]="col.ref"></flex-grid-column>
+                </template>
+            </tr>
+        </template>
 </tbody>
 </table>
+
+<!--private showTooltip () {
+        if (this.tooltipTemplate) {
+            this.componentResolver.resolveComponent(Tooltip)
+                .then(factory => {
+                    this.tooltip = this.viewContainer.createComponent(factory);
+                    this.tooltip.instance["content"] = this.tooltipTemplate;
+                    this.tooltip.instance["parentEl"] = this.elementRef;
+                    this.tooltip.instance["tooltipOptions"] = this.options;
+                });
+        }
+    }-->
+ 

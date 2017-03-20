@@ -9,13 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var grid_data_row_model_1 = require('../Model/grid-data-row.model');
 var GridRow = (function () {
     function GridRow() {
+        this.colms = [];
     }
+    GridRow.prototype.ngOnChanges = function (d) {
+        console.log(d);
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', grid_data_row_model_1.DataRowModel)
+    ], GridRow.prototype, "DataRow", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], GridRow.prototype, "colms", void 0);
     GridRow = __decorate([
         core_1.Component({
-            selector: 'flex-grid',
-            template: "\n  <tr></tr>\n  "
+            selector: 'flex-grid-row',
+            template: "\n  <tr>\n  <template ngFor let-col [ngForOf]=\"colms\">\n    <flex-grid-column [data]=\"DataRow\" [ref]=\"col.ref\"><div>asdas</div></flex-grid-column>\n  </template>\n  </tr>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], GridRow);
