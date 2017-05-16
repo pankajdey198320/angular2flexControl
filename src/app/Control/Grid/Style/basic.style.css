@@ -1,0 +1,9 @@
+ .flex-grid{
+   color: black;
+ }
+ 
+ .flex-grid .selected{
+          background-color: blue!important;
+        }
+  .flex-grid .even { color: red; background-color: white;}
+  .flex-grid .odd { color: green; background-color: azure;}

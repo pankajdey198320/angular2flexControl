@@ -1,4 +1,4 @@
-export class GridDataModel{
-    fieldName:string;
-    filedValue:string;
+export class GridDataModel {
+    fieldName: string;
+    filedValue: string;
 }

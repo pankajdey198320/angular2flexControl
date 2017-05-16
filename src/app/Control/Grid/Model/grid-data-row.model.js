@@ -1,7 +1,7 @@
 "use strict";
 var DataRowModel = (function () {
     function DataRowModel() {
-        this.fileds = [];
+        this.selected = false;
     }
     return DataRowModel;
 }());

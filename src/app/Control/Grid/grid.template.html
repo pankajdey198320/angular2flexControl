@@ -1,31 +1,34 @@
 <ng-content></ng-content>
-<table>
-<thead>
-    <tr>
-            <td *ngFor="let item of gridColumnModels;">{{item.Title}}</td>
+<table [className]="styles.baseClassName" style="width:100%">
+    <thead class="header">
+        <tr>
+            <td *ngIf="EnableSelectCheckbox"><input type="checkbox" (click)="SelectAll()" /></td>
+            <td *ngFor="let item of gridColumnModels;" (click)='SortClick(item.Title)'>
+                <span *ngIf='item.Type == undefined || item.Type === Text'>
+                {{item.Title}}
+                </span>
+                
+                </td>
 
-    </tr>
-</thead>
-<tbody>
-        <template ngFor let-item [ngForOf]="Data">
-            <tr>
-                <template ngFor let-col [ngForOf]="gridColumnModels">
-                    <flex-grid-column [data]="DataRow" [ref]="col.ref"></flex-grid-column>
-                </template>
-            </tr>
-        </template>
-</tbody>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let item of Data; 
+             let index =index;
+             let isOdd=odd;
+             let isEven=even" [class.odd]="isOdd" [class.even]="isEven" (click)='select(item)' [class.selected]="item.selected == true">
+             <td *ngIf="EnableSelectCheckbox"><input type="checkbox" [checked]='item.selected == true'/></td>
+            <template ngFor let-col [ngForOf]="gridColumnModels"> 
+                <td>
+                    <flex-grid-column [data]="item" [ref]="col.ref"></flex-grid-column>
+                </td>
+            </template>
+        </tr>
+
+    </tbody>
 </table>
-
-<!--private showTooltip () {
-        if (this.tooltipTemplate) {
-            this.componentResolver.resolveComponent(Tooltip)
-                .then(factory => {
-                    this.tooltip = this.viewContainer.createComponent(factory);
-                    this.tooltip.instance["content"] = this.tooltipTemplate;
-                    this.tooltip.instance["parentEl"] = this.elementRef;
-                    this.tooltip.instance["tooltipOptions"] = this.options;
-                });
-        }
-    }-->
- 
+<div id="PagingNavigation" style="margin-top: 10px;">
+    <button class="erxBtn-arrow-right eRxNavButton" type="button">Next</button>
+    <span style="vertical-align: initial; position: relative; top: 1px;">Displayed Items 1 through 50  (50 Items).  &nbsp;&nbsp;&nbsp;&nbsp;<b>More Items Available</b></span>
+</div>

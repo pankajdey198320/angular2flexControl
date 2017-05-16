@@ -14,13 +14,18 @@ var app_component_1 = require('./app.component');
 var grid_component_1 = require('./Control/Grid/grid.component');
 var grid_column_1 = require('./Control/Grid/GridColumn/grid.column');
 var grid_row_1 = require('./Control/Grid/Row/grid.row');
+var g_col_1 = require('./Control/Grid/GridColumn/g.col');
+var g_col_render_1 = require('./Control/Grid/GridColumn/g.col.render');
+var testMyComp_1 = require('./testMyComp');
+var grid_helper_1 = require('./Control/Grid/Helper/grid.helper');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule],
-            declarations: [app_component_1.AppComponent, grid_component_1.Grid, grid_column_1.GridColumn, grid_row_1.GridRow],
+            declarations: [app_component_1.AppComponent, grid_component_1.Grid, grid_column_1.GridColumn, grid_row_1.GridRow, g_col_1.GriColDirective, g_col_render_1.RenderDirective, testMyComp_1.testMycomp],
+            providers: [grid_helper_1.GridHelper],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

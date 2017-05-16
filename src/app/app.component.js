@@ -17,6 +17,20 @@ var AppComponent = (function () {
         var ds = new grid_data_service_1.DataService();
         this.DataSrc = ds.getData();
     }
+    AppComponent.prototype.easyHandle = function () {
+        alert('checkboxClicked');
+    };
+    AppComponent.prototype.DoAfterSelection = function (event) {
+        alert('row selected' + JSON.stringify(event));
+    };
+    AppComponent.prototype.ServerSort = function (evnt) {
+        var ds = new grid_data_service_1.DataService();
+        this.DataSrc = ds.getData();
+    };
+    AppComponent.prototype.PersonalAction = function (val, e) {
+        e.stopPropagation();
+        alert(val);
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
