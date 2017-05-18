@@ -2,7 +2,7 @@
 <table [className]="styles.baseClassName" style="width:100%">
     <thead class="header">
         <tr>
-            <td *ngIf="EnableSelectCheckbox"><input type="checkbox" (click)="SelectAll()" /></td>
+            <td *ngIf="EnableSelectCheckbox"><input type="checkbox" (click)="SelectAll($event)" /></td>
             <td *ngFor="let item of gridColumnModels;" (click)='SortClick(item.Title)'>
                 <span *ngIf='item.Type == undefined || item.Type === Text'>
                 {{item.Title}}

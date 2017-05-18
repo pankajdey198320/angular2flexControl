@@ -1,10 +1,25 @@
-import { Component, ContentChildren, QueryList, AfterContentInit, Input, TemplateRef, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
-import { GridContextModel, Sorting, SortDirection } from './Model/grid-context.model';
-import { GridStyle } from './model/grid-style.model';
-import { GridHelper } from './Helper/grid.helper'
-import { GridColumn } from './GridColumn/grid.column';
-import { GridColumnModel } from './Model/grid-column.model';
-import { DataRowModel } from './Model/grid-data-row.model';
+import 
+{ 
+  Component, ContentChildren, QueryList, AfterContentInit, 
+  Input, TemplateRef, Output, EventEmitter, ViewEncapsulation 
+} from './Definations/AngularDefinations';
+
+import 
+{ 
+  GridColumn 
+} from './Definations/ComponentDefinations';
+
+import //importing models
+{
+  GridContextModel, Sorting, SortDirection,
+  GridStyle,GridColumnModel,DataRowModel
+} from './Definations/ModelDefinations';
+
+import //importing commone classes
+{
+  GridHelper,GridUtil  
+} from "./Definations/CommonDefinations";
+
 import { GriColDirective } from './GridColumn/g.col'
 @Component({
   selector: 'flex-grid',
@@ -12,15 +27,16 @@ import { GriColDirective } from './GridColumn/g.col'
   styleUrls: ['./app/Control/Grid/Style/basic.style.css']
 })
 export class Grid implements AfterContentInit {
-  
+
   private context: GridContextModel;
   public styles: GridStyle = null;
   gridColumnModels: GridColumnModel[] = [];
   private _data: DataRowModel[] = [];
+  private _enableMultiSelect:boolean;
   @Input() set Data(data: DataRowModel[]) {
     data.forEach((element, inx) => {
       let x = new DataRowModel();
-      x = element;
+      Object.assign(x, element);
       x.index = inx;
       x.selected = false;
 
@@ -38,7 +54,14 @@ export class Grid implements AfterContentInit {
       this.styles.baseClassName = val;
     }
   }
-  @Input() EnableSelectCheckbox:boolean;
+  @Input() EnableSelectCheckbox: boolean;
+  @Input()
+  set EnableMultiSelection(val: boolean){
+    this._enableMultiSelect = val;
+  }
+  get EnableMultiSelection():boolean{
+    return this._enableMultiSelect;
+  }
   ///All events to host components
   @Output() selected: EventEmitter<DataRowModel> = new EventEmitter();
   @Output() sorted: EventEmitter<GridContextModel> = new EventEmitter();
@@ -53,26 +76,31 @@ export class Grid implements AfterContentInit {
     this.context.paging.PageSize = 10;
 
     this.styles = new GridStyle();
-    this.styles.baseClassName='flex-grid';
+    this.styles.baseClassName = 'flex-grid';
     this.EnableSelectCheckbox = false;
+    this.EnableMultiSelection = false;
   }
   ngAfterContentInit() {
     // contentChildren is set
     this.cra.forEach((item, idx) => {
-      let gm = new GridColumnModel(item.col_name, item.Value, item.templateRef,item.Type);
-      
+      let gm = new GridColumnModel(item.col_name, item.Value, item.templateRef, item.Type);
+
       this.gridColumnModels.push(gm);
     })
     let x = this.cra;
   }
   select(item: DataRowModel) {
     let selectedArr = this._data.filter(v => v.selected == true);
-    selectedArr.forEach(v => v.selected = false);
+    if (!(GridUtil.IsTrue( this.EnableSelectCheckbox ) && GridUtil.IsTrue( this._enableMultiSelect )))
+      selectedArr.forEach(v => v.selected = false);
     item.selected = true;
     this.selected.emit(item);
   }
-  SelectAll(){
-    this._data.forEach(v => v.selected = true);
+  SelectAll(e: any) {
+    if (e.target != undefined && e.target.checked)
+      this._data.forEach(v => v.selected = true);
+    else
+      this._data.forEach(v => v.selected = false);
   }
   SortClick(columnName: string) {
     if (this.context.sorting.IsClientSide !== true) {

@@ -1,6 +1,6 @@
 <h1>Hello {{name}}</h1>
-  <flex-grid [Data]="DataSrc" (selected)='DoAfterSelection($event)' (sorted)='ServerSort($event)' StyleClass='my-style'>
-    <div *colP="''; let d = data"><input type="radio" (click)='easyHandle()' name='select1' [checked]='d.selected == true'/></div>
+  <flex-grid [Data]="DataSrc" (selected)='DoAfterSelection($event)' (sorted)='ServerSort($event)' StyleClass='my-style' EnableSelectCheckbox=true EnableMultiSelection=false>
+   
     <div *colP="'Customer Name'; let d = data">{{d.name}}</div>
     <div *colP="'Salary'; let d = data">{{d.salary}}</div>
     <div *colP="'AGE'; let d = data">{{d.Age}}</div>
@@ -8,7 +8,7 @@
   </flex-grid>
 
 
-    <flex-grid [Data]="DataSrc" (selected)='DoAfterSelection($event)' (sorted)='ServerSort($event)' StyleClass='my-style' EnableSelectCheckbox='true'>
+    <flex-grid [Data]="DataSrc" (selected)='DoAfterSelection($event)' (sorted)='ServerSort($event)' StyleClass='my-style' EnableSelectCheckbox=true EnableMultiSelection=true>
 
     <div *colP="'Customer Name'; let d = data">{{d.name}}</div>
     <div *colP="'Salary'; let d = data">{{d.salary}}</div>
