@@ -17,7 +17,7 @@ var GridColumn = (function () {
     }
     GridColumn.prototype.ngOnInit = function () {
         this.cr.clear();
-        var x = this.cr.createEmbeddedView(this.ref, { data: this.data });
+        // let x= this.cr.createEmbeddedView(this.ref, {data:this.data} );
         //x.context = this.data;
         //Need to create directive to apply  dynamic content.
     };
@@ -36,7 +36,7 @@ var GridColumn = (function () {
     GridColumn = __decorate([
         core_1.Component({
             selector: 'flex-grid-column',
-            template: ""
+            template: "<ng-content></ng-content>"
         }), 
         __metadata('design:paramtypes', [core_1.ViewContainerRef])
     ], GridColumn);

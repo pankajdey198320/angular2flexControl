@@ -17,7 +17,8 @@
         <tr *ngFor="let item of Data; 
              let index =index;
              let isOdd=odd;
-             let isEven=even" [class.odd]="isOdd" [class.even]="isEven" (click)='select(item)' [class.selected]="item.selected == true">
+             let isEven=even" [class.odd]="isOdd" [class.even]="isEven" (click)='select(item)'
+              [class.selected]="item.selected == true">
              <td *ngIf="EnableSelectCheckbox"><input type="checkbox" [checked]='item.selected == true'/></td>
             <template ngFor let-col [ngForOf]="gridColumnModels"> 
                 <td>

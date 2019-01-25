@@ -78,7 +78,6 @@ var Grid = (function () {
             var gm = new ModelDefinations_1.GridColumnModel(item.col_name, item.Value, item.templateRef, item.Type);
             _this.gridColumnModels.push(gm);
         });
-        var x = this.cra;
     };
     Grid.prototype.select = function (item) {
         var selectedArr = this._data.filter(function (v) { return v.selected == true; });

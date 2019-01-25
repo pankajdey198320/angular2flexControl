@@ -1,17 +1,22 @@
 <h1>Hello {{name}}</h1>
-  <flex-grid [Data]="DataSrc" (selected)='DoAfterSelection($event)' (sorted)='ServerSort($event)' StyleClass='my-style' EnableSelectCheckbox=true EnableMultiSelection=false>
+  <flex-grid [Data]="DataSrc" (selected)='DoAfterSelection($event)' (sorted)='ServerSort($event)'
+   StyleClass='my-style' EnableSelectCheckbox=true EnableMultiSelection=false>
    
     <div *colP="'Customer Name'; let d = data">{{d.name}}</div>
     <div *colP="'Salary'; let d = data">{{d.salary}}</div>
     <div *colP="'AGE'; let d = data">{{d.Age}}</div>
-     <div *colP="'Action'; let d = data"><input type="button" value="edit" (click)='PersonalAction(d.name,$event)'/></div>
+     <div *colP="'Action'; let d = data"><input type="button" value="edit" (click)='PersonalAction(d.name,$event)'/>
+    </div>
   </flex-grid>
 
 
-    <flex-grid [Data]="DataSrc" (selected)='DoAfterSelection($event)' (sorted)='ServerSort($event)' StyleClass='my-style' EnableSelectCheckbox=true EnableMultiSelection=true>
+    <flex-grid [Data]="DataSrc" (selected)='DoAfterSelection($event)' (sorted)='ServerSort($event)' 
+    StyleClass='my-style' EnableSelectCheckbox=true EnableMultiSelection=true>
 
-    <div *colP="'Customer Name'; let d = data">{{d.name}}</div>
+    <div *colP="'Customer Name'; let d = data"><p>{{d.name}}</p></div>
     <div *colP="'Salary'; let d = data">{{d.salary}}</div>
-    <div *colP="'AGE'; let d = data">{{d.Age}}</div>
-     <div *colP="'Action'; let d = data"><input type="button" value="edit" (click)='PersonalAction(d.name,$event)'/></div>
+    <div *colP="'B'; let d = data">{{d.Age}}</div>
+     <div *colP="'Action'; let d = data">
+       <input type="button" value="edit" (click)='PersonalAction(d.name,$event)'/>
+      </div>
   </flex-grid>

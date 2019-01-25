@@ -86,8 +86,7 @@ export class Grid implements AfterContentInit {
       let gm = new GridColumnModel(item.col_name, item.Value, item.templateRef, item.Type);
 
       this.gridColumnModels.push(gm);
-    })
-    let x = this.cra;
+    });
   }
   select(item: DataRowModel) {
     let selectedArr = this._data.filter(v => v.selected == true);

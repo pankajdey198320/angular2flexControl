@@ -1,7 +1,7 @@
 import { Component,Directive,Input,TemplateRef,ViewContainerRef,OnInit,ComponentFactoryResolver } from '@angular/core';
 @Component({
     selector:'flex-grid-column',
-    template:``
+    template:`<ng-content></ng-content>`
 })
 export class GridColumn implements OnInit{
     @Input() Title:string;
@@ -15,7 +15,7 @@ export class GridColumn implements OnInit{
     }
     ngOnInit(){
       this.cr.clear();
-     let x= this.cr.createEmbeddedView(this.ref, {data:this.data} );
+     // let x= this.cr.createEmbeddedView(this.ref, {data:this.data} );
        //x.context = this.data;
   
 
